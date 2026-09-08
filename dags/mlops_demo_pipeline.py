@@ -15,8 +15,8 @@ def mlops_demo_pipeline():
     @task
     def report_pipeline_contract() -> dict[str, str]:
         return {
-            "source_repo": "baynex-hjkim/morpheus-mlops-training",
-            "charts_repo": "baynex-hjkim/morpheus-mlops-charts",
+            "source_repo": "InhongLee95/morpheus-mlops-training",
+            "charts_repo": "InhongLee95/morpheus-mlops-charts",
             "image": "harbor.morpheus.test/mlops/ray-mlops-demo",
             "gitops_path": "gitops/mlops-demo",
             "rayjob": "mlops-demo/ray-mlops-demo-<short-sha>",
