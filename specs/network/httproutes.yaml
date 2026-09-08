@@ -8,7 +8,7 @@ spec:
     - name: nginx
       namespace: nginx-gateway
   hostnames:
-    - grafana.mlops.local
+    - grafana.lih.local
   rules:
     - matches:
         - path:
@@ -28,7 +28,7 @@ spec:
     - name: nginx
       namespace: nginx-gateway
   hostnames:
-    - airflow.mlops.local
+    - airflow.lih.local
   rules:
     - matches:
         - path:
@@ -48,7 +48,7 @@ spec:
     - name: nginx
       namespace: nginx-gateway
   hostnames:
-    - argocd.mlops.local
+    - argocd.lih.local
   rules:
     - matches:
         - path:
@@ -68,7 +68,7 @@ spec:
     - name: nginx
       namespace: nginx-gateway
   hostnames:
-    - mlflow.mlops.local
+    - mlflow.lih.local
   rules:
     - matches:
         - path:
@@ -88,7 +88,7 @@ spec:
     - name: nginx
       namespace: nginx-gateway
   hostnames:
-    - nexus.mlops.local
+    - nexus.lih.local
   rules:
     - matches:
         - path:
@@ -108,7 +108,7 @@ spec:
     - name: nginx
       namespace: nginx-gateway
   hostnames:
-    - prometheus.mlops.local
+    - prometheus.lih.local
   rules:
     - matches:
         - path:

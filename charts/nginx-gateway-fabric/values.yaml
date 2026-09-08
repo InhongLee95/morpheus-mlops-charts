@@ -17,6 +17,6 @@ gateway:
   name: nginx
   namespace: nginx-gateway
   gatewayClassName: nginx
-  hostname: "*.mlops.local"
+  hostname: "*.lih.local"
   enableHttps: false
-  tlsSecretName: ai-stradvision-tls
+  tlsSecretName: lih-local-wildcard-tls

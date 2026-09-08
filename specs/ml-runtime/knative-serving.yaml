@@ -16,7 +16,7 @@ spec:
     network:
       ingress-class: kourier.ingress.networking.knative.dev
     domain:
-      mlops.local: ""
+      lih.local: ""
     autoscaler:
       stable-window: "60s"
       enable-scale-to-zero: "true"

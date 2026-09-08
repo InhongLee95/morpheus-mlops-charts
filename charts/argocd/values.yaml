@@ -4,6 +4,6 @@ argocd:
     extraArgs:
       - --insecure
   global:
-    domain: argocd.mlops.local
+    domain: argocd.lih.local
     nodeSelector:
       node-role.kubernetes.io/service: "true"
