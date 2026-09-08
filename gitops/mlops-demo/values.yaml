@@ -1,0 +1,58 @@
+appName: ray-mlops-demo
+runId: "5ee0f81"
+
+image:
+  repository: harbor.morpheus.test/mlops/ray-mlops-demo
+  tag: "5ee0f81"
+  pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: harbor-pull-secret
+
+job:
+  entrypoint: "python -m src.train"
+  shutdownAfterJobFinishes: false
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 0
+
+ray:
+  version: "2.40.0"
+
+head:
+  cpu: "1"
+  memory: "2Gi"
+
+worker:
+  replicas: 1
+  cpu: "1"
+  memory: "2Gi"
+
+mlflow:
+  trackingUri: http://mlflow.mlflow.svc.cluster.local:5000
+  experimentName: ray-mlops-demo
+
+s3:
+  endpointUrl: http://minio.minio.svc.cluster.local:9000
+  bucket: ray
+  region: ap-northeast-2
+  secretName: mlflow-s3-env
+
+env:
+  runNamePrefix: ray-mlops-demo
+
+train:
+  candidates: "20:2,50:3,100:4,120:none"
+
+model:
+  bucket: mlops-demo-models
+
+commonLabels:
+  app.kubernetes.io/part-of: mlops-training
+  app.kubernetes.io/component: ray-mlops-demo
+
+httproute:
+  enabled: true
+  hostname: ray-mlops-demo.morpheus.test
+  gatewayName: nginx-gateway
+  gatewayNamespace: nginx-gateway
+  sectionName: https
