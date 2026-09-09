@@ -52,7 +52,7 @@ commonLabels:
 
 httproute:
   enabled: true
-  hostname: ray-mlops-demo.morpheus.test
+  hostname: ray-mlops-demo.lih.local
   gatewayName: nginx-gateway
   gatewayNamespace: nginx-gateway
   sectionName: https
