@@ -1,26 +1,7 @@
 # morpheus-mlops-charts
 
-Morpheus Enterprise용 StradVision MLOps 설치 자산 저장소다.
+MLOps 데모 파이프라인의 학습 단계를 실행시키는 Helm 차트 레포입니다.
 
-구성 원칙:
+Argo CD가 이 차트를 동기화하면 학습용 RayJob과 Ray 대시보드 접속용 Service·HTTPRoute가 클러스터에 생성됩니다.
 
-- `charts/`: Morpheus `Spec Template` 타입을 `Helm Chart`로 만들 때 사용할 wrapper chart
-- `specs/`: Morpheus `Spec Template` 타입을 `Kubernetes Spec`로 만들 때 사용할 raw manifest
-- secret 값은 Git에 넣지 않고 placeholder만 둔다
-- 실제 secret 값은 Morpheus Cypher 또는 별도 secret spec template로 주입한다
-
-이 저장소의 chart는 upstream chart를 `dependency`로 참조한다.
-Morpheus appliance가 외부 chart repo에 접근하지 못하면 아래 중 하나를 수행해야 한다.
-
-1. `helm dependency build` 후 vendor된 `charts/` 디렉터리를 커밋
-2. Harbor / Nexus 같은 내부 chart mirror를 사용하도록 `repository` 경로 변경
-
-제외한 항목:
-
-- `kube-vip`: MKS가 클러스터 lifecycle을 담당하므로 수동 control-plane VIP bootstrap을 그대로 이식하지 않음
-- `rke2-installation`: MKS가 대체하므로 수동 RKE2 설치 문서는 변환 대상에서 제외
-
-## GitOps demo
-
-- `gitops/mlops-demo`: GitHub Actions에서 이미지 tag와 RayJob 이름을 갱신하는 KubeRay `RayJob` chart
-- `dags/mlops_demo_pipeline.py`: Airflow에서 사용할 파이프라인 계약 메타데이터 예시
+파이프라인이 실행될 때마다 이미지 정보(`image.repository`, `image.tag`)와 `runId`, `model.bucket` 값이 Argo CD 파라미터로 바뀌어 새 학습이 실행됩니다.
